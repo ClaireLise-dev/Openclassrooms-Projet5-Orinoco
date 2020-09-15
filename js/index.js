@@ -1,6 +1,6 @@
 const getTeddies =  async function() {
     //Récupération des données de l'API
-    try { let response = await fetch('http://localhost:3000/api/teddies/');
+    try {let response = await fetch('http://localhost:3000/api/teddies/');
         if (response.ok) {
             let teddies = await response.json();
             console.log(teddies);
@@ -16,10 +16,9 @@ const getTeddies =  async function() {
                     const button = document.createElement('a');
     //Ajout du contenu
                     h2.textContent = teddy.name;
-                    price.textContent = teddy.price + " €";
-                    button.textContent = "Détails";
-
-                    button.setAttribute("href", "#");
+                    price.textContent = teddy.price / 100 + " €";
+                    button.textContent = "Personnalisez"+" "+ teddy.name + "!";
+                    button.setAttribute("href", "./product.html?id=" + teddy._id);
                     image.setAttribute("src", teddy.imageUrl);
                     image.setAttribute("alt", teddy.name);
     //Ajout des Class Bootstrap
@@ -28,7 +27,7 @@ const getTeddies =  async function() {
                     div.classList.add("card-body");
                     h2.classList.add("card-title");
                     price.classList.add("card-text");
-                    button.classList.add("btn", "btn-info","bg-danger");
+                    button.classList.add("btn","btn-danger");
     //Ajout des éléments enfants
                     div_row.appendChild(article);
                     article.appendChild(image)
