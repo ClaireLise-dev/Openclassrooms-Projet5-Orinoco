@@ -1,6 +1,7 @@
-const getTeddies =  async function() {
+const APIURL = 'http://localhost:3000/api/teddies/'
+const getTeddies =  async function(url) {
     //Récupération des données de l'API
-    try {let response = await fetch('http://localhost:3000/api/teddies/');
+    try {let response = await fetch(url);
         if (response.ok) {
             let teddies = await response.json();
             console.log(teddies);
@@ -14,6 +15,8 @@ const getTeddies =  async function() {
                     const h2 = document.createElement('h2');
                     const price = document.createElement('p');
                     const button = document.createElement('a');
+                    // const button = createTag ('a','','Personnalisez' +teddy.name,)
+
     //Ajout du contenu
                     h2.textContent = teddy.name;
                     price.textContent = teddy.price / 100 + " €";
@@ -44,5 +47,13 @@ const getTeddies =  async function() {
     }
 }
 //Appel de la fonction getTeddies
-getTeddies();
+getTeddies(APIURL);
 
+/* function createTag (tag, className,content, parent) {
+    const element = document.createElement (tag)
+    element.className = className
+    element.innerHTML = content
+    parent.appendChild (element)
+    return element
+}
+*/
