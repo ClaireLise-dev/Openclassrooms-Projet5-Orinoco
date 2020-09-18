@@ -13,7 +13,7 @@ const getTeddies =  async function(url) {
                     const article = document.createElement('article');
                     const div = document.createElement('div');
                     const h2 = document.createElement('h2');
-                    const price = document.createElement('p');
+                    const price = document.createElement('h3');
                     const button = document.createElement('a');
                     // const button = createTag ('a','','Personnalisez' +teddy.name,)
 
