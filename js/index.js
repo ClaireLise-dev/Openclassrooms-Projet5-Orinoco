@@ -1,4 +1,3 @@
-const APIURL = 'http://localhost:3000/api/teddies/'
 const getTeddies =  async function(url) {
     //Récupération des données de l'API
     try {let response = await fetch(url);

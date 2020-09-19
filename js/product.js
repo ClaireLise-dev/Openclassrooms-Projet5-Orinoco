@@ -3,9 +3,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 console.log(id);
 
-const getTeddies = async function() {
+const getTeddies = async function(url) {
     //Récupération des données du teddy sélectionné par son id
-       let response = await fetch('http://localhost:3000/api/teddies/'+ id);
+       let response = await fetch(url);
        if (response.ok) {
            let teddy = await response.json();
            console.log(teddy);
@@ -26,7 +26,7 @@ const getTeddies = async function() {
             description.textContent = teddy.description;
             price.textContent = teddy.price / 100 + " €";
             label.textContent = "Personnalisez sa couleur : ";
-            button.textContent = "Ajoutez"+" "+ teddy.name + " " + "au panier!";
+            button.textContent = "Ajoutez"+" "+ teddy.name + " " + "au panier";
             label.setAttribute('for', "Choix de couleurs de " + teddy.name);
             select.setAttribute('name', "Choix de couleurs de " + teddy.name);
             button.setAttribute("href", "#");
@@ -63,4 +63,4 @@ const getTeddies = async function() {
     }
 }
 
-getTeddies ();
+getTeddies (APIURL + id);
