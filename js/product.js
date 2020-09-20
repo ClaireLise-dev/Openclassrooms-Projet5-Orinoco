@@ -5,7 +5,7 @@ console.log(id);
 
 const getTeddies = async function(url) {
     //Récupération des données du teddy sélectionné par son id
-       let response = await fetch(url);
+    try {let response = await fetch(url);
        if (response.ok) {
            let teddy = await response.json();
            console.log(teddy);
@@ -64,7 +64,7 @@ const getTeddies = async function(url) {
                 selectOption.textContent = colors[i];
                 selectOption.setAttribute('value', colors[i]);
             }
-        
+
     //Ecoute de l'évènement sur le boutton
         button.addEventListener("click", function (event) {
         event.preventDefault();
@@ -79,8 +79,22 @@ const getTeddies = async function(url) {
         };
         console.log(teddiesChoosen);
 
-        })
-
+        let storedTeddies = JSON.parse(localStorage.getItem('newArticle'));
+        const teddyColor = select.value;
+                if(storedTeddies) {
+                    storedTeddies.push(teddiesChoosen);
+                    localStorage.setItem('newArticle', JSON.stringify(storedTeddies));
+                    console.log(storedTeddies);
+                    if (window.confirm(teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier!')) {
+                        window.location.href = "basket.html";
+                    } else {
+                        window.location.href = "product.html";
+                    }
+                }
+            })
+        }
+    } catch (error) {
+        alert("Erreur : " + error);
     }
 }
 
