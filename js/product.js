@@ -9,6 +9,7 @@ const getTeddies = async function(url) {
        if (response.ok) {
            let teddy = await response.json();
            console.log(teddy);
+
     //Création des éléments dans le DOM
             const div_row = document.getElementById('content-top');
             const div_col = document.createElement('div');
@@ -21,6 +22,7 @@ const getTeddies = async function(url) {
             const label = document.createElement('label');
             const select = document.createElement('select');
             const button = document.createElement('a');
+
     //Création du contenu
             h2.textContent = teddy.name;
             description.textContent = teddy.description;
@@ -32,6 +34,7 @@ const getTeddies = async function(url) {
             button.setAttribute("href", "#");
             image.setAttribute("src", teddy.imageUrl);
             image.setAttribute("alt", teddy.name);
+
     //Création des class Bootstrap
             article.classList.add("col-md-5", "teddys", "m-3","px-0","card", "shadow");
             image.classList.add("card-img-top","img-responsive");
@@ -41,6 +44,7 @@ const getTeddies = async function(url) {
             price.classList.add("card-text");
             select.classList.add("form-control");
             button.classList.add("btn","btn-danger");
+
     //Création des éléments enfants
             div_row.appendChild(article);
             article.appendChild(image)
@@ -51,14 +55,31 @@ const getTeddies = async function(url) {
             div.appendChild (label);
             div.appendChild (select);
             div.appendChild(button);
-        //récupération des couleurs pour le Teddy
-            const colors = teddy.colors;
+
+    //Récupération couleurs Teddy
+        const colors = teddy.colors;
                 for (i = 0; i < colors.length; i++) {
                 const selectOption = document.createElement('option');
                 select.appendChild(selectOption);
                 selectOption.textContent = colors[i];
                 selectOption.setAttribute('value', colors[i]);
             }
+        
+    //Ecoute de l'évènement sur le boutton
+        button.addEventListener("click", function (event) {
+        event.preventDefault();
+
+    //Stockage du teddy sélectionné dans le localStorage
+        let teddiesChoosen = {
+            teddyName: teddy.name,
+            teddyId: teddy._id,
+            teddyColor: select.value,
+            quantity: 1,
+            teddyPrice: teddy.price / 100,
+        };
+        console.log(teddiesChoosen);
+
+        })
 
     }
 }
