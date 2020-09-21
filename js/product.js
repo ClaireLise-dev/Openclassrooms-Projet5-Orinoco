@@ -1,3 +1,4 @@
+    //Récupération id dans l'URL
 console.log(window.location.search);
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
@@ -77,14 +78,23 @@ const getTeddies = async function(url) {
             quantity: 1,
             teddyPrice: teddy.price / 100,
         };
-        console.log(teddiesChoosen);
 
-        let storedTeddies = JSON.parse(localStorage.getItem('newArticle'));
+        let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'));
+        if (storedTeddies === null || storedTeddies === undefined){
+            storedTeddies = []
+        }
         const teddyColor = select.value;
                 if(storedTeddies) {
-                    storedTeddies.push(teddiesChoosen);
-                    localStorage.setItem('newArticle', JSON.stringify(storedTeddies));
-                    console.log(storedTeddies);
+                    const line = storedTeddies.find (teddyTmp => teddyTmp.teddyId == teddy._id && teddyColor ==  teddyTmp.teddyColor)
+
+                    console.log (line)
+                    if (line === undefined){
+                        storedTeddies.push(teddiesChoosen);
+                    }else{
+                        line.quantity++
+                    }
+                    localStorage.setItem('addTeddy', JSON.stringify(storedTeddies));
+
                     if (window.confirm(teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier!')) {
                         window.location.href = "basket.html";
                     } else {
