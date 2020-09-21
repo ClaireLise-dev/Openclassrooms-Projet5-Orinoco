@@ -3,7 +3,9 @@ Bienvenu chez Oriteddies!
 Vous trouverez ici le front-end du site, pour pouvoir le visualiser correctement, voici quelques recommandations:
 
 1 - Clonez le back-end ici: https://github.com/OpenClassrooms-Student-Center/JWDP5.git
+
 2 - Téléchargez puis installer Node.js
+
 3 - Ouvrez le terminal puis tapez la commande: "npm start". Enfin lancez le serveur en tapant la commande : "node server".
 
 Le serveur doit fonctionner sur "localhost" avec le port par défaut "3000".
