@@ -170,7 +170,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
     const formMail = createTag ('div', 'form-group', null, form, null)
     const labelMail = createTag ('label', null, 'Votre adresse mail: ', formMail, {'for':'email'} );
     const mail = createTag ('input', null, null, formMail, {'type':'email', 'class':'form-control', 'name':'mail', 'required':'true'})
-    
+
     // Vérification de la validité du mail
     mail.addEventListener("change", function (event) {
         if (validMail(mail.value)){
@@ -179,7 +179,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
             alert("Veuillez saisir une adresse mail valide (exemple : abcd@mail.com).")
         }
     })
- 
+
     // Création bouton validation de commande
 
     let submit = createTag ('button','btn btn-danger','Validez votre commande', form, {'type':'submit','name':'add','id':'valid'})

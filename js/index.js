@@ -48,12 +48,6 @@ const getTeddies =  async function(url) {
 //Appel de la fonction getTeddies
 getTeddies(APIURL);
 
-
-
-const conteneur = document.getElementById ("truc")
-const ul = createTag ("ul","a b", null, conteneur,{"test":"bidule","test2":"bidule2"})
-// ul.setAttribute ("test", "bidule")
-createTag ("li","a b", "Bonjour", ul)
 function createTag (tag, className,content, parent, attributes) {
     const element = document.createElement (tag)
     element.className = className
