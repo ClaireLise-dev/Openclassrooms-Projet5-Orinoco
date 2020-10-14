@@ -6,37 +6,14 @@ const getTeddies =  async function(url) {
             console.log(teddies);
     //Création des éléments dans le DOM
             for (let teddy of teddies) {
-                    const div_row = document.getElementById('content-top');
-                    const div_col = document.createElement('div');
-                    const image = document.createElement('img');
-                    const article = document.createElement('article');
-                    const div = document.createElement('div');
-                    const h2 = document.createElement('h2');
-                    const price = document.createElement('h3');
-                    const button = document.createElement('a');
-                    // const button = createTag ('a','','Personnalisez' +teddy.name,)
-
-    //Ajout du contenu
-                    h2.textContent = teddy.name;
-                    price.textContent = teddy.price / 100 + " €";
-                    button.textContent = "Personnalisez"+" "+ teddy.name + "!";
-                    button.setAttribute("href", "./product.html?id=" + teddy._id);
-                    image.setAttribute("src", teddy.imageUrl);
-                    image.setAttribute("alt", teddy.name);
-    //Ajout des Class Bootstrap
-                    article.classList.add("col-md-5", "teddys", "m-3","px-0","card", "shadow");
-                    image.classList.add("card-img-top","img-responsive");
-                    div.classList.add("card-body");
-                    h2.classList.add("card-title");
-                    price.classList.add("card-text");
-                    button.classList.add("btn","btn-danger");
-    //Ajout des éléments enfants
-                    div_row.appendChild(article);
-                    article.appendChild(image)
-                    article.appendChild(div);
-                    div.appendChild(h2);
-                    div.appendChild(price);
-                    div.appendChild(button);
+                    const divRow = document.getElementById('content-top')
+                    const divCol = createTag ('div','col-md-5 teddys m-3 px-0', null, divRow, null)
+                    const card = createTag ('div', 'card shadow', null, divCol, null)
+                    const image = createTag ('img','card-img-top img-responsive', null, card, {'src':teddy.imageUrl, 'alt': teddy.name})
+                    const cardBody = createTag ('div', 'card-body', null, card,null)
+                    const h2 = createTag ('h2','card-title', teddy.name, cardBody, null)
+                    const price = createTag ('h3','card-text', teddy.price /100 + ' €', cardBody, null);
+                    const button = createTag ('a','btn btn-danger','Personnalisez'+' '+ teddy.name + '!', cardBody, {'href':'./product.html?id=' + teddy._id} )
                 }
         } else {
             console.error('Retour du serveur : ', response.status);
@@ -47,15 +24,4 @@ const getTeddies =  async function(url) {
 }
 //Appel de la fonction getTeddies
 getTeddies(APIURL);
-
-function createTag (tag, className,content, parent, attributes) {
-    const element = document.createElement (tag)
-    element.className = className
-    element.innerHTML = content
-    for (const key in attributes){
-        element.setAttribute (key, attributes [key])
-    }
-    parent.appendChild (element)
-    return element
-}
 

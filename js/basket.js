@@ -5,18 +5,6 @@ if (storedTeddies === null || storedTeddies === undefined){
 }
 console.log(storedTeddies);
 
-// Fonction createTag
-function createTag (tag, className,content, parent, attributes) {
-    const element = document.createElement (tag)
-    element.className = className
-    element.innerHTML = content
-    for (const key in attributes){
-        element.setAttribute (key, attributes [key])
-    }
-    parent.appendChild(element)
-    return element
-}
-
 // Création des bases du panier
 const div_row = document.getElementById('content-top')
 const article = createTag ('article', 'jumbotron col-md-8 teddys m-3 px-0 card shadow',null,div_row,null)
