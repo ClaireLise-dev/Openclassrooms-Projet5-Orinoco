@@ -27,10 +27,7 @@ const getTeddies = async function(url) {
     //Récupération couleurs Teddy
         const colors = teddy.colors;
                 for (i = 0; i < colors.length; i++) {
-                const selectOption = document.createElement('option');
-                select.appendChild(selectOption);
-                selectOption.textContent = colors[i];
-                selectOption.setAttribute('value', colors[i]);
+                const selectColors= createTag ('option', null, colors[i],select,{'value': colors[i]})
             }
 
     //Ecoute de l'évènement sur le boutton
