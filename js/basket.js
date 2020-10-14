@@ -1,9 +1,9 @@
 // Récupération des données du Localstorage
-let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'));
+let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
 if (storedTeddies === null || storedTeddies === undefined){
     storedTeddies = []
 }
-console.log(storedTeddies);
+console.log(storedTeddies)
 
 // Création des bases du panier
 const div_row = document.getElementById('content-top')
@@ -31,7 +31,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
         e.preventDefault()
             // console.log(event.target.getAttribute('data-id'))
             // console.log(event.target.getAttribute('data-color'))
-            const storedTeddy = storedTeddies.filter(teddy =>teddy.teddyId == event.target.getAttribute('data-id') && teddy.teddyColor == event.target.getAttribute('data-color'))[0]
+            const storedTeddy = storedTeddies.filter(teddy =>teddy.teddyId == e.target.getAttribute('data-id') && teddy.teddyColor == event.target.getAttribute('data-color'))[0]
             console.log(storedTeddy)
             if (storedTeddy.quantity >= 1){
                 storedTeddy.quantity --

@@ -1,12 +1,12 @@
-const getTeddies =  async function(url) {
+const getTeddies =  async function(url){
     //Récupération des données de l'API
-    try {let response = await fetch(url);
-        if (response.ok) {
-            let teddies = await response.json();
-            console.log(teddies);
+    try {let response = await fetch(url)
+        if (response.ok){
+            let teddies = await response.json()
+            console.log(teddies)
     //Création des éléments dans le DOM
             for (let teddy of teddies) {
-                    const divRow = document.getElementById('content-top')
+                    const divRow = document.getElementById ('content-top')
                     const divCol = createTag ('div','col-md-5 teddys m-3 px-0', null, divRow, null)
                     const card = createTag ('div', 'card shadow', null, divCol, null)
                     const image = createTag ('img','card-img-top img-responsive', null, card, {'src':teddy.imageUrl, 'alt': teddy.name})
