@@ -9,3 +9,11 @@ function createTag (tag, className,content, parent, attributes) {
     return element
 }
 
+function teddiesNumber() {
+const storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
+const basketTeddies = document.getElementById("basket_teddies")
+if (storedTeddies) {
+    const count = storedTeddies.reduce ((sum, item) => sum += item.quantity, 0)
+    basketTeddies.textContent = count
+    }
+}

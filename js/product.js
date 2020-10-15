@@ -1,3 +1,6 @@
+    // Appel teddiesNumber
+teddiesNumber()
+
     //Récupération id dans l'URL
 console.log(window.location.search)
 const urlParams = new URLSearchParams(window.location.search)
@@ -23,11 +26,12 @@ const getTeddies = async function(url) {
             const label = createTag ('label', null, 'Personnalisez sa couleur: ', cardBody, {'for':'Choix de coueurs de '+ teddy.name})
             const select = createTag ('select', 'form-control', null, cardBody, {'name':'Choix de couleurs de '+teddy.name});
             const button = createTag ('button', 'btn btn-danger mt-2', 'Ajoutez'+' '+ teddy.name+ ' '+'au panier', cardBody, null)
+            
 
     //Récupération couleurs Teddy
         const colors = teddy.colors;
                 for (i = 0; i < colors.length; i++) {
-                const selectColors= createTag ('option', null, colors[i],select,{'value': colors[i]})
+                const selectColors= createTag ('option', null, colors[i], select,{'value': colors[i]})
             }
 
     //Ecoute de l'évènement sur le boutton
@@ -59,10 +63,10 @@ const getTeddies = async function(url) {
                     }
                     localStorage.setItem('addTeddy', JSON.stringify(storedTeddies));
 
-                    if (window.confirm(teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier!')) {
+                    if (window.confirm (teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier! Si vous souhaitez continuer vos achats, cliquez sur annuler!')) {
                         window.location.href = "basket.html";
                     } else {
-                        window.location.href = "product.html";
+                        window.location.href = "index.html";
                     }
                 }
             })

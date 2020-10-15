@@ -5,20 +5,24 @@ if (storedTeddies === null || storedTeddies === undefined){
 }
 console.log(storedTeddies)
 
+// Appel teddiesNumber
+teddiesNumber()
+
 // Création des bases du panier
-const div_row = document.getElementById('content-top')
-const article = createTag ('article', 'jumbotron col-md-8 teddys m-3 px-0 card shadow',null,div_row,null)
-const div = createTag ('div', 'card-body', null, article, null)
-const h2 = createTag ('h2','card-title text-danger font-weight-bold text-center','Vos Teddies:',div, null)
+const divRow = document.getElementById('content-top')
+const divCol = createTag ('div', 'jumbotron col-md-8 teddys m-3 px-0',null,divRow,null)
+const h2 = createTag ('h2','card-title text-danger font-weight-bold text-center','Vos Teddies:',divCol, null)
+
+
 
 // Récupération du local storage
 if(storedTeddies == null || storedTeddies.length === 0){
     // si le panier est vide
-     const emptyBasket = createTag ('p', 'card-text text-center', 'Votre panier est vide', div, null)
+     const emptyBasket = createTag ('p', 'card-text text-center', 'Votre panier est vide', divCol, null)
 } else {
     // si des teddies sont présents dans le panier : récupération des teddies
     for (var storedTeddy of storedTeddies) {
-        const eachTeddy = createTag ('div','card-body col-md-7 m-3 mx-auto card bg-danger shadow',null,div,null)
+        const eachTeddy = createTag ('div','card-body col-md-7 m-3 mx-auto card bg-danger shadow',null, divCol,null)
         const teddiesDetails = createTag ('p','card-title text-center text-light',storedTeddy.quantity + " " + storedTeddy.teddyName + ", " + storedTeddy.teddyColor, eachTeddy,null)
         const teddyPrice = createTag ('p', 'card-text text-center teddyPrice text-light', null, teddiesDetails, null)
         const price = createTag ('p', 'card-text text-center', storedTeddy.teddyPrice * storedTeddy.quantity + '€', teddyPrice, null)
@@ -59,10 +63,21 @@ if(storedTeddies == null || storedTeddies.length === 0){
     const totalPrice = calculPrice.reduce(reducer, 0)
     console.log(totalPrice)
 
-    const total = createTag ('p', 'card-text text-center text-danger font-weight-bold m-3', 'Montant total du panier = '+ totalPrice + ' €', article, null)
+    const total = createTag ('p', 'card-text text-center text-danger font-weight-bold m-3', 'Montant total du panier = '+ totalPrice + ' €', divCol, null)
+
+    // Création bouton vider le panier
+    const deleteDivCol = createTag ('div','col-md-5 text-center mx-auto',null, divCol, null)
+    const deleteAll = createTag ('button','btn btn-danger','Vider le panier', deleteDivCol, null)
+
+    deleteAll.addEventListener("click", function (e) {
+     e.preventDefault();
+     localStorage.removeItem('addTeddy');
+     alert('Votre panier a bien été vidé !')
+     window.location.href = "basket.html"
+    })
 
     // Création du formulaire de commande
-    const form = createTag ('form', 'card-body text-center col-md-8 m-3 mx-auto shadow', null, article, null)
+    const form = createTag ('form', 'card-body text-center col-md-8 m-3 mx-auto shadow', null, divCol, null)
     const h3 = createTag ('h3','m-5 text-center','Merci de remplir ce formulaire pour valider votre commande', form,null)
 
     // Création fonctions validité prénom, nom, ville, code postal, mail
@@ -169,8 +184,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
     })
 
     // Création bouton validation de commande
-
-    let submit = createTag ('button','btn btn-danger','Validez votre commande', form, {'type':'submit','name':'add','id':'valid'})
+    const submit = createTag ('button','btn btn-danger','Validez votre commande', form, {'type':'submit','name':'add','id':'valid'})
 
     // Envoi des données panier + contact au serveur si le formulaire est valide
     submit.addEventListener('click', function (event) {

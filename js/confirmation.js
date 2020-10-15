@@ -13,7 +13,7 @@ const divCol= createTag ('div', 'jumbotron col-md-8 teddys m-3 px-0',null,divRow
 const h2 = createTag ('h2','card-title text-danger font-weight-bold text-center','Récapitulatif de votre commande: ', divCol, null)
 const order = createTag ('p', 'card-text text-center', 'Numéro de commande: ' + orderId, divCol, null)
 const price = createTag ('p','card-text text-center', 'Montant total de votre commande: ' + totalPrice + ' €', divCol, null)
-const thanksMessage = createTag ('p','card-text text-center text-danger font-weight-bold', "Vos teddies seront bientôt chez vous! Merci d'avoir commandé chez Oriteddies!", divCol, null)
+const thanksMessage = createTag ('p','card-text text-center text-danger font-weight-bold mt-3', "Vos teddies seront bientôt chez vous! Merci d'avoir commandé chez Oriteddies!", divCol, null)
 
 // Efface localStorage
 localStorage.clear()

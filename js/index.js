@@ -1,3 +1,6 @@
+// Appel teddiesNumber
+teddiesNumber()
+
 const getTeddies =  async function(url){
     //Récupération des données de l'API
     try {let response = await fetch(url)
