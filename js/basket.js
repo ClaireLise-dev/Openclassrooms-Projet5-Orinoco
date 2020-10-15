@@ -11,7 +11,7 @@ teddiesNumber()
 // Création des bases du panier
 const divRow = document.getElementById('content-top')
 const divCol = createTag ('div', 'jumbotron col-md-8 teddys m-3 px-0',null,divRow,null)
-const h2 = createTag ('h2','card-title text-danger font-weight-bold text-center','Vos Teddies:',divCol, null)
+const h2 = createTag ('h2','card-title bg-danger text-light font-weight-bold text-center','Vos Teddies:',divCol, null)
 
 
 
@@ -23,12 +23,13 @@ if(storedTeddies == null || storedTeddies.length === 0){
 } else {
     // si des teddies sont présents dans le panier : récupération des teddies
     for (var storedTeddy of storedTeddies) {
-        const eachTeddy = createTag ('div','card-body col-md-7 m-3 mx-auto card bg-danger shadow',null, divCol,null)
-        const teddiesDetails = createTag ('p','card-title text-center text-light',storedTeddy.quantity + " " + storedTeddy.teddyName + ", " + storedTeddy.teddyColor, eachTeddy,null)
-        const teddyPrice = createTag ('p', 'card-text text-center teddyPrice text-light', null, teddiesDetails, null)
-        const price = createTag ('p', 'card-text text-center', storedTeddy.teddyPrice * storedTeddy.quantity + '€', teddyPrice, null)
+        const listTeddies = createTag ('ul', 'list-inline', null, divCol, null)
+        const eachTeddy = createTag ('li','list-item m-2 d-flex justify-content-between',null, divCol,null)
+        const teddiesDetails = createTag ('div', null, 'x' + storedTeddy.quantity + ' ' + storedTeddy.teddyName + ", " + storedTeddy.teddyColor, eachTeddy,null)
+        const teddyPrice = createTag ('div', 'd-flex justify-content-between align-items-center', null, eachTeddy, null)
+        const price = createTag ('div',null, storedTeddy.teddyPrice * storedTeddy.quantity + '€ ', teddyPrice, null)
     // Création bouton Supprimer
-        const deleteBtn = createTag ('button','btn btn-secondary fas fa-trash-alt',null,teddyPrice,null)
+        const deleteBtn = createTag ('button','btn btn-secondary ml-md-3 fas fa-trash-alt',null, teddyPrice,null)
         deleteBtn.setAttribute ('data-id', storedTeddy.teddyId)
         deleteBtn.setAttribute ('data-color', storedTeddy.teddyColor)
     // Ecoute de l'évènement sur le boutton
@@ -79,7 +80,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
 
     // Création du formulaire de commande
     const form = createTag ('form', 'card-body text-center col-md-8 m-3 mx-auto shadow', null, divCol, null)
-    const h3 = createTag ('h3','m-5 text-center','Merci de remplir ce formulaire pour valider votre commande', form,null)
+    const h3 = createTag ('h3','m-md-5 text-center','Merci de remplir ce formulaire pour valider votre commande', form,null)
 
     // Création fonctions validité prénom, nom, ville, code postal, mail
     function validName(value) {
