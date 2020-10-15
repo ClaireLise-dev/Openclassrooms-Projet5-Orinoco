@@ -19,6 +19,7 @@ const h2 = createTag ('h2','card-title text-danger font-weight-bold text-center'
 if(storedTeddies == null || storedTeddies.length === 0){
     // si le panier est vide
      const emptyBasket = createTag ('p', 'card-text text-center', 'Votre panier est vide', divCol, null)
+     localStorage.clear ()
 } else {
     // si des teddies sont présents dans le panier : récupération des teddies
     for (var storedTeddy of storedTeddies) {
@@ -71,7 +72,7 @@ if(storedTeddies == null || storedTeddies.length === 0){
 
     deleteAll.addEventListener("click", function (e) {
      e.preventDefault();
-     localStorage.removeItem('addTeddy');
+     localStorage.removeItem('addTeddy')
      alert('Votre panier a bien été vidé !')
      window.location.href = "basket.html"
     })

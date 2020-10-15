@@ -14,6 +14,6 @@ const storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
 const basketTeddies = document.getElementById("basket_teddies")
 if (storedTeddies) {
     const count = storedTeddies.reduce ((sum, item) => sum += item.quantity, 0)
-    basketTeddies.textContent = count
+    const counter = createTag ('span', 'bg-dark text-light px-1 rounded-circle', count, basketTeddies, null)
     }
 }

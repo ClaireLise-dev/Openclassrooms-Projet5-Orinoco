@@ -63,10 +63,10 @@ const getTeddies = async function(url) {
                     }
                     localStorage.setItem('addTeddy', JSON.stringify(storedTeddies));
 
-                    if (window.confirm (teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier! Si vous souhaitez continuer vos achats, cliquez sur annuler!')) {
-                        window.location.href = "basket.html";
-                    } else {
+                    if (window.confirm (teddy.name + " " + teddyColor + ' a bien été ajouté à votre panier! Souhaitez-vous continuer vos achats? ')) {
                         window.location.href = "index.html";
+                    } else {
+                        window.location.href = "basket.html";
                     }
                 }
             })
