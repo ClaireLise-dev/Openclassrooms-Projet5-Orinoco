@@ -22,7 +22,7 @@
                 const cardBody = createTag('div', 'card-body', null, card, null)
                 const h2 = createTag('h2', 'card-title', teddy.name, cardBody, null)
                 const description = createTag('p', 'card-text', teddy.description, cardBody, null)
-                const price = createTag('h3', 'card-text', teddy.price / 100 + ' €', cardBody, null)
+                const price = createTag('h3', 'card-text',(teddy.price / 100).toFixed(2) + ' €', cardBody, null)
                 const label = createTag('label', null, 'Personnalisez sa couleur: ', cardBody, {
                     'for': 'Choix de coueurs de ' + teddy.name
                 })
