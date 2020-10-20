@@ -236,7 +236,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                 city: city.value,
                 email: mail.value,
             }
-            console.log(contact)
+
 
             // Création du tableau teddies
             let products = []
@@ -250,7 +250,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                 contact,
                 products,
             }
-
+            
             // Envoi des données au serveur
             const post = async function (data) {
                 try {
