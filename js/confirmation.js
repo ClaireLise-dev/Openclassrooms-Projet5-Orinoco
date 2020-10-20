@@ -15,4 +15,3 @@ const thanksMessage = createTag('p', 'card-text text-center text-danger font-wei
 
 // Efface localStorage
 localStorage.clear()
-alert(localStorage)

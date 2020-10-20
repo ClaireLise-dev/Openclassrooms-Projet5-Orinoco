@@ -74,7 +74,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
 
     // Création fonctions validité prénom, nom, ville, code postal, mail
     function validName(value) {
-        return /^[A-Z-a-z\s]{3,40}$/.test(value)
+        return /^[A-Z-a-zéèàùôê\s]{3,40}$/.test(value)
     }
 
     // Création fonctions validité adresse
