@@ -1,8 +1,12 @@
 //Récupération des données du Localstorage
-let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
-if (storedTeddies === null || storedTeddies === undefined) {
-    storedTeddies = []
+function getStoredTeddies() {
+    let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
+    if (storedTeddies === null || storedTeddies === undefined) {
+        storedTeddies = []
+    }
+    return storedTeddies
 }
+let storedTeddies = getStoredTeddies()
 
 //Création des bases du panier
 const divRow = document.getElementById('content-top')
@@ -25,9 +29,13 @@ if (storedTeddies === null || storedTeddies.length === 0) {
         const teddyPrice = createTag('div', 'd-flex justify-content-between align-items-center', null, eachTeddy, null)
         const price = createTag('div', null, storedTeddy.teddyPrice * storedTeddy.quantity + '€ ', teddyPrice, null)
         // Création bouton Supprimer
-        const deleteBtn = createTag('button', 'btn btn-secondary ml-md-3 fas fa-trash-alt', null, teddyPrice, {'data-id': storedTeddy.teddyId,'data-color':storedTeddy.teddyColor })
+        const deleteBtn = createTag('button', 'btn btn-secondary ml-md-3 fas fa-trash-alt', null, teddyPrice, {
+            'data-id': storedTeddy.teddyId,
+            'data-color': storedTeddy.teddyColor
+        })
         // Ecoute de l'évènement sur le boutton
-        deleteBtn.addEventListener('click', function (e) {
+        // Ecoute de l'évènement sur le boutton
+        function deleteTeddy(e) {
             e.preventDefault()
             const storedTeddy = storedTeddies.filter(teddy => teddy.teddyId == e.target.getAttribute('data-id') && teddy.teddyColor == e.target.getAttribute('data-color'))[0]
             if (storedTeddy.quantity >= 1) {
@@ -43,7 +51,8 @@ if (storedTeddies === null || storedTeddies.length === 0) {
 
             alert('Cet article a bien été supprimé !')
             window.location.href = "basket.html"
-        })
+        }
+        deleteBtn.addEventListener('click', deleteTeddy)
     }
 
     let calculPrice = []
@@ -61,12 +70,13 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     const deleteDivCol = createTag('div', 'col-md-5 text-center mx-auto', null, divCol, null)
     const deleteAll = createTag('button', 'btn btn-danger', 'Vider le panier', deleteDivCol, null)
 
-    deleteAll.addEventListener("click", function (e) {
+    function deleteBasket(e) {
         e.preventDefault();
         localStorage.removeItem('addTeddy')
         alert('Votre panier a bien été vidé !')
         window.location.href = "basket.html"
-    })
+    }
+    deleteAll.addEventListener("click", deleteBasket)
 
     // Création du formulaire de commande
     const form = createTag('form', 'card-body text-center col-md-8 m-3 mx-auto shadow', null, divCol, null)
@@ -79,7 +89,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
 
     // Création fonctions validité adresse
     function validAddress(value) {
-        return /^[A-Z-a-z-0-9\s]{5,80}$/.test(value)
+        return /^[A-Z-a-z-0-9éèàùôê\s]{5,80}$/.test(value)
     }
 
     // Création fonctions validité code postal
@@ -219,9 +229,9 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     // Envoi des données panier + contact au serveur si le formulaire est valide
-    submit.addEventListener('click', function (event) {
+    function confirmation(e) {
         if (validName(firstName.value) && validName(lastName.value) && validAddress(address.value) && validName(city.value) && validMail(mail.value)) {
-            event.preventDefault()
+            e.preventDefault()
 
             // Envoi du totalPrice au localStorage
             localStorage.setItem('totalPrice', totalPrice)
@@ -250,11 +260,11 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                 contact,
                 products,
             }
-            
+
             // Envoi des données au serveur
             const post = async function (data) {
                 try {
-                    let response = await fetch (APIURL + 'order', {
+                    let response = await fetch(APIURL + 'order', {
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers: {
@@ -268,7 +278,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                         localStorage.removeItem('addTeddy')
 
                     } else {
-                        event.preventDefault();
+                        e.preventDefault();
                         console.error('Retour du serveur : ', response.status)
                         alert('Erreur rencontrée : ' + response.status)
                     }
@@ -277,6 +287,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                 }
             }
             post(send)
-        }
-    })
+            }
+    }
+    submit.addEventListener('click', confirmation)
 }

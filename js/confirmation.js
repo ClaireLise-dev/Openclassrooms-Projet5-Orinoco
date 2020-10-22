@@ -14,4 +14,5 @@ const price = createTag('p', 'card-text text-center', 'Montant total de votre co
 const thanksMessage = createTag('p', 'card-text text-center text-danger font-weight-bold mt-3', "Vos teddies seront bientôt chez vous! Merci d'avoir commandé chez Oriteddies!", divCol, null)
 
 // Efface localStorage
-localStorage.clear()
+    localStorage.clear()
+

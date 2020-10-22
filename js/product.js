@@ -3,7 +3,7 @@
     const id = urlParams.get('id')
 
 
-    const getTeddies = async function (url) {
+    const getTeddy = async function (url) {
         //Récupération des données du teddy sélectionné par son id
         try {
             let response = await fetch(url)
@@ -22,7 +22,7 @@
                 const cardBody = createTag('div', 'card-body', null, card, null)
                 const h2 = createTag('h2', 'card-title', teddy.name, cardBody, null)
                 const description = createTag('p', 'card-text', teddy.description, cardBody, null)
-                const price = createTag('h3', 'card-text',(teddy.price / 100).toFixed(2) + ' €', cardBody, null)
+                const price = createTag('h3', 'card-text', (teddy.price / 100).toFixed(2) + ' €', cardBody, null)
                 const label = createTag('label', null, 'Personnalisez sa couleur: ', cardBody, {
                     'for': 'Choix de coueurs de ' + teddy.name
                 })
@@ -40,9 +40,8 @@
                     })
                 }
 
-                //Ecoute de l'évènement sur le boutton
-                button.addEventListener("click", function (event) {
-                    event.preventDefault();
+                function clickAddBasket(event) {
+                    event.preventDefault()
 
                     //Stockage du teddy sélectionné dans le localStorage
                     let teddiesChoosen = {
@@ -51,7 +50,7 @@
                         teddyColor: select.value,
                         quantity: 1,
                         teddyPrice: teddy.price / 100,
-                    };
+                    }
 
                     let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'));
                     if (storedTeddies === null || storedTeddies === undefined) {
@@ -73,11 +72,14 @@
                             window.location.href = "basket.html";
                         }
                     }
-                })
+                }
+
+                //Ecoute de l'évènement sur le bouton
+                button.addEventListener("click", clickAddBasket)
             }
         } catch (error) {
             alert("Erreur : " + error);
         }
     }
-//Appel de la fonction getTeddies
-getTeddies(APIURL + id);
+    //Appel de la fonction getTeddies
+    getTeddy(APIURL + id)
