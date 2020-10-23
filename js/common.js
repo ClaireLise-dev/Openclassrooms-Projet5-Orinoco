@@ -14,7 +14,7 @@ function teddiesNumber() {
     const storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
     const basketTeddies = document.getElementById("basket_teddies")
     if (storedTeddies) {
-        const count = storedTeddies.reduce ((sum, item) => sum += item.quantity, 0)
+        const count = storedTeddies.reduce((sum, item) => sum += item.quantity, 0)
         const counter = createTag('span', 'd-none d-sm-block bg-dark text-light px-2 rounded-circle', count, basketTeddies, null)
     }
 }

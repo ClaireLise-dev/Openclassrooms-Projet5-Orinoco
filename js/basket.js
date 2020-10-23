@@ -287,7 +287,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
                 }
             }
             post(send)
-            }
+        }
     }
     submit.addEventListener('click', confirmation)
 }
