@@ -34,7 +34,6 @@ if (storedTeddies === null || storedTeddies.length === 0) {
             'data-color': storedTeddy.teddyColor
         })
         // Ecoute de l'évènement sur le boutton
-        // Ecoute de l'évènement sur le boutton
         function deleteTeddy(e) {
             e.preventDefault()
             const storedTeddy = storedTeddies.filter(teddy => teddy.teddyId == e.target.getAttribute('data-id') && teddy.teddyColor == e.target.getAttribute('data-color'))[0]
@@ -182,7 +181,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
         }
     })
     // Ajout formulaire ville
-    const formCity = createTag('div', 'form-group', null, form, null);
+    const formCity = createTag('div', 'form-group', null, form, null)
     const labelCity = createTag('label', null, 'Votre ville: ', formCity, {
         'for': 'ville'
     })
@@ -205,7 +204,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     const formMail = createTag('div', 'form-group', null, form, null)
     const labelMail = createTag('label', null, 'Votre adresse mail: ', formMail, {
         'for': 'email'
-    });
+    })
     const mail = createTag('input', null, null, formMail, {
         'type': 'email',
         'class': 'form-control',
@@ -248,19 +247,19 @@ if (storedTeddies === null || storedTeddies.length === 0) {
             }
 
 
-            // Création du tableau teddies
+            // Création du tableau products
             let products = []
             for (storedTeddy of storedTeddies) {
                 let productsId = storedTeddy.teddyId
-                products.push((productsId))
+                products.push(productsId)
             }
+
 
             // Création d'un objet regroupant contact et produits
             let send = {
                 contact,
                 products,
             }
-
             // Envoi des données au serveur
             const post = async function (data) {
                 try {

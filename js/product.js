@@ -33,7 +33,7 @@
 
 
                 //Récupération couleurs Teddy
-                const colors = teddy.colors;
+                const colors = teddy.colors
                 for (const color of colors) {
                     const selectColors = createTag('option', null, color, select, {
                         'value': color
@@ -52,7 +52,7 @@
                         teddyPrice: teddy.price / 100,
                     }
 
-                    let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'));
+                    let storedTeddies = JSON.parse(localStorage.getItem('addTeddy'))
                     if (storedTeddies === null || storedTeddies === undefined) {
                         storedTeddies = []
                     }
