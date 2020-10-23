@@ -22,7 +22,7 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     localStorage.clear()
 } else {
     // si des teddies sont présents dans le panier : récupération des teddies
-    for (const storedTeddy of storedTeddies) {
+    for (let storedTeddy of storedTeddies) {
         const listTeddies = createTag('ul', 'list-inline', null, divCol, null)
         const eachTeddy = createTag('li', 'list-item m-2 d-flex justify-content-between', null, divCol, null)
         const teddiesDetails = createTag('div', null, 'x' + storedTeddy.quantity + ' ' + storedTeddy.teddyName + ", " + storedTeddy.teddyColor, eachTeddy, null)
@@ -134,10 +134,10 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     // Vérification validité du nom
-    lastName.addEventListener('change', function (event) {
+    lastName.addEventListener('change', function (e) {
         if (validName(lastName.value)) {} else {
             alert("Aucun chiffre ou symbole n'est autorisé.")
-            event.preventDefault()
+            e.preventDefault()
         }
     })
 
@@ -154,9 +154,9 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     // Vérification validité de l'adresse
-    address.addEventListener('change', function (event) {
+    address.addEventListener('change', function (e) {
         if (validAddress(address.value)) {} else {
-            event.preventDefault()
+            e.preventDefault()
             alert("Aucun symbole n'est autorisé.")
         }
     })
@@ -174,10 +174,10 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     // Vérification validité du code postal
-    postalCode.addEventListener('change', function (event) {
+    postalCode.addEventListener('change', function (e) {
         if (validPostalCode(postalCode.value)) {} else {
             alert("Aucune lettre ou symbole n'est autorisé.")
-            event.preventDefault()
+            e.preventDefault()
         }
     })
     // Ajout formulaire ville
@@ -193,10 +193,10 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     //Vérification validité de la ville
-    city.addEventListener('change', function (event) {
+    city.addEventListener('change', function (e) {
         if (validName(city.value)) {} else {
             alert("Aucun chiffre ou symbole n'est autorisé.")
-            event.preventDefault()
+            e.preventDefault()
         }
     })
 
@@ -213,9 +213,9 @@ if (storedTeddies === null || storedTeddies.length === 0) {
     })
 
     // Vérification de la validité du mail
-    mail.addEventListener("change", function (event) {
+    mail.addEventListener("change", function (e) {
         if (validMail(mail.value)) {} else {
-            event.preventDefault()
+            e.preventDefault()
             alert("Veuillez saisir une adresse mail valide (exemple : abcd@mail.com).")
         }
     })
